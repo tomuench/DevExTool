@@ -10,8 +10,39 @@ questions = [
 ].freeze
 
 types = {
-  'Years' => 'Rapidfire::Questions::Date',
-  'Amount' => 'Rapidfire::Questions::Numeric',
-  'Skill-Level' => 'Rapidfire::Questions::Radio',
-  'Experience-Level' => 'Rapidfire::Questions::Radio'
+  'Years' => {
+    type: 'Rapidfire::Questions::Numeric',
+    validation_rules: { presence: '1', minimum: '0', maximum: '50' }
+  },
+  'Amount' => {
+    type: 'Rapidfire::Questions::Numeric',
+    validation_rules: { presence: '1', minimum: '0', maximum: '500' }
+  },
+  'Skill-Level' => {
+    type: 'Rapidfire::Questions::Radio',
+    answer_options: [] # TODO
+  },
+  'Experience-Level' => {
+    type: 'Rapidfire::Questions::Radio',
+    answer_options: [] # TODO
+  }
 }
+
+Rapidfire::Survey.new(
+  name: 'Skill Level',
+  introduction: 'Skill Level Survey',
+  active: true,
+  after_survey_content: 'Thank you for taking the Skill Level Survey'
+) do |survey|
+  questions.each do |question|
+    type = types[question[:type]]
+    survey.questions.build(
+      question_text: question[:question],
+      type: type[:type],
+      answer_options: type[:answer_options],
+      validation_rules: type[:validation_rules]
+    )
+  end
+
+  survey.save!
+end
