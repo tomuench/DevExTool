@@ -1,19 +1,78 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>DevExTool</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>DevExTool</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
+  >
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+</head>
 
-  <body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+<body>
 
-  <%= yield %>
-  </body>
+<!-- START NAV -->
+<nav class="navbar">
+  <div class="container">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+        <%= image_tag "logo.png", alt: "Logo" %>
+      </a>
+      <span class="navbar-burger burger" data-target="navbarMenu">
+                        <span></span>
+                <span></span>
+                <span></span>
+                </span>
+    </div>
+    <div id="navbarMenu" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="/home/index">
+          Overview
+        </a>
+        <a class="navbar-item">
+          Survey
+        </a>
+        <a class="navbar-item" href="/home/about.html">
+          About me
+        </a>
+        <a class="navbar-item" href="/home/impressum.html">
+          Impressum
+        </a>
+
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- END NAV -->
+
+
+<section class="hero is-info is-medium is-bold">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title special-title">
+        Assessing Developer Experience in Web Libraries
+        Using Psychological and Software Engineering
+        Metrics
+      </h1>
+    </div>
+  </div>
+</section>
+
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+
+<div class="container">
+  <section class="articles">
+    <div class="column is-8 is-offset-2">
+      <%= yield %>
+    </div>
+  </section>
+</div>
+</body>
 </html>

@@ -1,13 +1,26 @@
-<h2><%= t('rapidfire.attempts.header') -%></h2>
-<hr/>
+<div class="card article">
+  <div class="card-content">
 
-<p><%= @survey.introduction %></p>
+    <h2 class="article-title">
+      <%= @survey.introduction %>
+    </h2>
+    <p>
+     TODO: Description
+    </p>
+    <hr/>
 
-<%= form_for([@survey, @attempt_builder], method: method) do |f| %>
-  <%- @attempt_builder.answers.each do |answer| %>
-    <%= f.fields_for("#{answer.question.id}", answer) do |answer_form| %>
-      <%= render_answer_form_helper(answer, answer_form) %>
+    <%= form_for([@survey, @attempt_builder], method: method) do |f| %>
+      <%- @attempt_builder.answers.each do |answer| %>
+        <%= f.fields_for("#{answer.question.id}", answer) do |answer_form| %>
+          <%= render_answer_form_helper(answer, answer_form) %>
+        <% end %>
+        <hr/>
+      <% end %>
+
+      <%= submit_tag("Abort", { :name => 'reset', :class => 'button is-danger', :type => "reset" }) %>
+
+      <%= f.submit submit_text, class: 'button is-primary' %>
     <% end %>
-  <% end %>
-  <%= f.submit submit_text %>
-<% end %>
+
+  </div>
+</div>
