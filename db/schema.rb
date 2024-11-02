@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_10_19_133342) do
+ActiveRecord::Schema[7.0].define(version: 2024_11_02_114354) do
   create_table "rapidfire_answers", force: :cascade do |t|
     t.integer "attempt_id"
     t.integer "question_id"
@@ -27,6 +27,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_19_133342) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "workflow_step_id"
     t.index ["survey_id"], name: "index_rapidfire_attempts_on_survey_id"
     t.index ["user_id", "user_type"], name: "index_rapidfire_attempts_on_user_id_and_user_type"
     t.index ["user_type", "user_id"], name: "index_rapidfire_attempts_on_user"
@@ -68,4 +69,24 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_19_133342) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "workflow_steps", force: :cascade do |t|
+    t.integer "workflow_id"
+    t.time "start"
+    t.string "title"
+    t.text "description"
+    t.time "end"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "position"
+  end
+
+  create_table "workflows", force: :cascade do |t|
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "rapidfire_attempts", "workflow_steps"
+  add_foreign_key "workflow_steps", "workflows"
+  add_foreign_key "workflows", "users"
 end

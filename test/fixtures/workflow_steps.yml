@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  workflow_id: 1
+  start: 2024-11-01 09:27:31
+  title: MyString
+  description: MyText
+  end: 2024-11-01 09:27:31
+
+two:
+  workflow_id: 1
+  start: 2024-11-01 09:27:31
+  title: MyString
+  description: MyText
+  end: 2024-11-01 09:27:31

@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'workflows/new'
+  get 'workflows/index'
+  post 'workflows/create'
+
+  get 'workflows/show'
   get 'home/index'
   get 'home/about'
   get 'home/impressum'

@@ -1,0 +1,33 @@
+
+<div class="card article">
+  <div class="card-content">
+      <h2 class="article-title">
+        Start of your Journey
+      </h2>
+    <p>
+      Welcome to the start of your survey journey about Developer Experience (DevEx). This survey will challenge your
+      programming skills in with JavaScript in the context of a real-world scenario.
+      Your Email-Address is your unique identifier for this survey. We will not share your email with anyone or use it
+      for any other purpose than to send you the results of your survey.
+    </p>
+
+    <hr/>
+      <!-- Article content -->
+    <%= form_with model: @workflow, url: "/workflows/create" do |form| %>
+      <div class="field">
+        <%= form.label :email, class: "label" %>
+        <%= form.text_field :email, class: "input is-primary", required: true %>
+      </div>
+      <div class="field">
+        <%= form.label :password, class: "label" %>
+        <%= form.text_field :password, type: "password", class: "input is-primary", required: true %>
+      </div>
+      <div class="field">
+        <%= form.label :password_confirmation, class: "label" %>
+        <%= form.text_field :password_confirmation, type: "password", class: "input is-primary", required: true %>
+      </div>
+      <%= form.submit "Create Survey Account", class: "button is-primary" %>
+    <% end %>
+    </div>
+  </div>
+</div>
