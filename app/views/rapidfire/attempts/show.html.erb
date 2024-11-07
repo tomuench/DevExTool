@@ -1,5 +1,7 @@
 <div class="card article">
   <div class="card-content">
     <%= @survey.after_survey_content.html_safe %>
+    <br/>
+    <%= link_to 'Back to Overview', '/workflows/index', class: 'button  is-primary' %>
   </div>
 </div>

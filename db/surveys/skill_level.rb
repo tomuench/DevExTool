@@ -29,7 +29,7 @@ types = {
 }
 
 Rapidfire::Survey.new(
-  name: 'Skill Level',
+  name: 'Skill',
   introduction: 'Skill Level Survey',
   active: true,
   after_survey_content: 'Thank you for taking the Skill Level Survey'

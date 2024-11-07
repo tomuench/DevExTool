@@ -8,21 +8,25 @@ questions = [
   {
     question: 'What is your gender?',
     type: 'Rapidfire::Questions::Radio',
-    answer_options: ['Male', 'Female', 'Other'].join("\r\n")
+    answer_options: ['Male', 'Female', 'Other'].join("\r\n"),
+    validation_rules: { presence: '1' }
   },
   {
     question: 'What is your academic background?',
     type: 'Rapidfire::Questions::Radio',
-    answer_options: ['B.Sc', 'M.Sc', 'PhD/Dr', 'Prof'].join("\r\n")
+    answer_options: ['B.Sc', 'M.Sc', 'PhD/Dr', 'Prof'].join("\r\n"),
+    validation_rules: { presence: '1' }
   },
   {
     question: 'What is your profession or job title?',
     type: 'Rapidfire::Questions::Short',
+    validation_rules: { presence: '1' }
   },
   {
     question: 'From where do you participate in the study?',
     type: 'Rapidfire::Questions::Radio',
-    answer_options: ['Home office', 'Office', 'Mobile'].join("\r\n")
+    answer_options: ['Home office', 'Office', 'Mobile'].join("\r\n"),
+    validation_rules: { presence: '1' }
   }
 ].freeze
 

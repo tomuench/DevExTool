@@ -7,4 +7,9 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 
+require_relative 'surveys/sdfs'
+require_relative 'surveys/imi'
+#require_relative 'surveys/skill_level'
+require_relative 'surveys/demography'
+
 User.create(email: "to.muench@muench-its.de", password: "topsecret", password_confirmation: "topsecret", admin: true)
