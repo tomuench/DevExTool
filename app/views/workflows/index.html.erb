@@ -26,7 +26,7 @@
                   <p>
                     <%= link_to "#{index + 1}. #{attempt.survey.name}",
                                 "/rapidfire/surveys/#{attempt.survey.id}/attempts/#{attempt.id}/edit?workflow_step_id=#{step.id}",
-                                class: "button #{attempt_state(attempt)}",
+                                class: "button #{attempt_state(attempt)} #{attempt_disabled(step.attempts, index) ? 'item-disabled' :''}",
                                 disabled: step_disabled ||  attempt_disabled(step.attempts, index) %>
                   </p>
                 <% end %>

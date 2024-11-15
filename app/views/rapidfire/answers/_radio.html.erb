@@ -1,15 +1,23 @@
-<%= render partial: "rapidfire/answers/errors", locals: {answer: answer} %>
+<%= render partial: "rapidfire/answers/errors", locals: { answer: answer } %>
 
 <div class="form-group">
-  <%= f.label :answer_text, answer.question.question_text.html_safe %>
-  <div class="radios">
-  <%- answer.question.options.each_with_index do |option, index| %>
-    <span class="form-group sub">
-      <%= f.label "answer_text_#{index}", class_names: "radio" do %>
-        <%= f.radio_button :answer_text, option, id: "#{f.object_name.gsub(/\]\[|[^-a-zA-Z0-9:.]/, "_").sub(/_$/, "")}_answer_text_#{index}" %>
+  <strong>
+    <div class="icon-text">
+      <span class="icon has-text">
+        <i class="fas fa-lg fa-question-circle"></i>
+      </span>
+      <span>
+        <%= f.label :answer_text, answer.question.question_text.html_safe %>
+      </span>
+    </div>
+  </strong>
+  <br/>
+  <div class="radios radio-buttons">
+    <%- answer.question.options.each_with_index do |option, index| %>
+      <%= f.radio_button :answer_text, option, id: "#{f.object_name.gsub(/\]\[|[^-a-zA-Z0-9:.]/, "_").sub(/_$/, "")}_answer_text_#{index}" %>
+      <%= f.label "answer_text_#{index}", class: "button" do %>
         <%= option %>
       <% end %>
-    </span>
-  <% end %>
+    <% end %>
   </div>
 </div>

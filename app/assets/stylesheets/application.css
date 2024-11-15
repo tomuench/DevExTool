@@ -133,3 +133,26 @@ div.column.is-8:first-child {
     cursor: default;
     opacity: 0.5;
 }
+
+/* Design a radio input as a button
+ */.radio-buttons {
+       display: flex;
+       gap: 10px; /* Adds spacing between the buttons */
+   }
+
+.radio-buttons input[type="radio"] {
+    display: none; /* Hide the radio inputs */
+}
+
+/* Highlight the selected button using Bulma's is-primary style */
+.radio-buttons input[type="radio"]:checked + label {
+    background-color: #00d1b2; /* Bulma primary color */
+    color: #fff;
+    border-color: transparent;
+}
+
+/* Optional: Add hover effect for unselected buttons */
+.radio-buttons label:hover {
+    background-color: #00c4a7; /* Slightly darker primary color */
+    color: #fff;
+}

@@ -27,7 +27,7 @@ class Workflow < ApplicationRecord
         'how this type of task impacts your engagement, motivation, and overall experience.' +
         'Please click here to get your task instructions.',
       # TODO wie messe ich hier start, end und code-metrics
-      survey_ids: survey_ids([:IMI, :SDFS]) # IMI SDFS DEXI
+      survey_ids: survey_ids([:IMI, :SDFS, :DEXI]) # IMI SDFS DEXI
     )
     self.workflow_steps.create(
       position: 3,
@@ -38,7 +38,7 @@ class Workflow < ApplicationRecord
         'influence your developer experience.' +
         'Please click here to get your task instructions.',
       # TODO wie messe ich hier start, end und code-metrics
-      survey_ids: survey_ids([:IMI, :SDFS])  # IMI SDFS DEXI
+      survey_ids: survey_ids([:IMI, :SDFS, :DEXI])  # IMI SDFS DEXI
     )
     self.workflow_steps.create(
       position: 4,
@@ -47,7 +47,7 @@ class Workflow < ApplicationRecord
         'thoughts on the study. This feedback helps us understand your experience as a whole and provides valuable ' +
         'insights for improving developer tools and resources. Thank you for participating and sharing your unique ' +
         'perspective!',
-      survey_ids: [] # Feedback Form
+      survey_ids: survey_ids([:Feedback]) # Feedback Form
     )
   end
 

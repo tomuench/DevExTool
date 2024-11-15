@@ -1,5 +1,15 @@
-<%= render partial: "rapidfire/answers/errors", locals: {answer: answer} %>
+<%= render partial: "rapidfire/answers/errors", locals: { answer: answer } %>
 <div class="form-group">
-<%= f.label :answer_text, answer.question.question_text.html_safe %>
-<%= f.text_field :answer_text %>
+  <strong>
+    <div class="icon-text">
+      <span class="icon has-text">
+        <i class="fas fa-lg fa-question-circle"></i>
+      </span>
+      <span>
+        <%= f.label :answer_text, answer.question.question_text.html_safe %>
+      </span>
+    </div>
+  </strong>
+  <br/>
+  <%= f.text_field :answer_text %>
 </div>

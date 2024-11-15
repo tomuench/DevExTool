@@ -23,8 +23,9 @@ class WorkflowStep < ApplicationRecord
       survey_ids.each do |survey_id|
         survey = Rapidfire::Survey.find(survey_id)
         builder = Rapidfire::AttemptBuilder.new(survey: survey, user: workflow.user, params: {})
-        builder.save(validate: false)
-        builder.to_model.update(workflow_step_id: id)
+        attempt = builder.to_model
+        attempt.save
+        attempt.update(workflow_step_id: id)
       end
     end
   end
