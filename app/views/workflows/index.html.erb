@@ -12,11 +12,11 @@
           <span class="tag is-medium is-black">Start</span>
         </header>
 
-        <% @workflow.workflow_steps.each do |step| %>
+        <% @workflow.workflow_steps.each_with_index do |step,step_index| %>
+          <% step_disabled = workflow_step_disabled(@workflow.workflow_steps,step_index)  %>
           <div class="timeline-item">
-            <!-- TODO wann finished? -->
             <div class="timeline-marker <%= workflow_step_state(step) %>"></div>
-            <div class="timeline-content">
+            <div class="timeline-content <%= step_disabled ? 'item-disabled' : '' %>">
               <p class="heading"> <%= step.title %> </p>
               <p>
                 <%= step.description %>
@@ -24,9 +24,10 @@
               <div class="buttons">
                 <% step.attempts.each_with_index do |attempt, index| %>
                   <p>
-                    <%= link_to "#{index+1}. #{attempt.survey.name}",
+                    <%= link_to "#{index + 1}. #{attempt.survey.name}",
                                 "/rapidfire/surveys/#{attempt.survey.id}/attempts/#{attempt.id}/edit?workflow_step_id=#{step.id}",
-                                class: "button #{attempt_state(attempt)}" %>
+                                class: "button #{attempt_state(attempt)}",
+                                disabled: step_disabled ||  attempt_disabled(step.attempts, index) %>
                   </p>
                 <% end %>
               </div>

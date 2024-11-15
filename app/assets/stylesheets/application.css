@@ -127,3 +127,9 @@ div.column.is-8:first-child {
 .article-body{
     text-align:justify;
 }
+
+.item-disabled {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.5;
+}

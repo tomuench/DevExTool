@@ -23,7 +23,7 @@ class WorkflowStep < ApplicationRecord
       survey_ids.each do |survey_id|
         survey = Rapidfire::Survey.find(survey_id)
         builder = Rapidfire::AttemptBuilder.new(survey: survey, user: workflow.user, params: {})
-        builder.save
+        builder.save(validate: false)
         builder.to_model.update(workflow_step_id: id)
       end
     end
@@ -33,7 +33,7 @@ class WorkflowStep < ApplicationRecord
 
   def attempts_finished_count
     attempts.includes(:answers).sum do |attempt|
-      attempt.answers.any? { |answer| answer.answer_text.nil? } ? 0 : 1
+      attempt.answers.any? { |answer| !answer.answer_text.nil? } ? 1 : 0
     end
   end
 end
