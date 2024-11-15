@@ -29,7 +29,7 @@ Rapidfire::Survey.new(
     questions.each do |question|
       survey.questions.build(
         :question_text => question,
-        :type => "Rapidfire::Questions::Checkbox",
+        :type => "Rapidfire::Questions::Radio",
         :answer_options => LIKERT_OPTIONS.join("\r\n"),
       )
     end

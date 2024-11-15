@@ -1,38 +1,43 @@
-
 <div class="card article">
   <div class="card-content">
     <div class="content">
       <h2 class="article-title">
-        Your Journey
+        Your Developer-Experience Journey
       </h2>
       <p>
 
       </p>
       <div class="timeline">
         <header class="timeline-header">
-          <span class="tag is-medium is-primary">Start</span>
+          <span class="tag is-medium is-black">Start</span>
         </header>
 
         <% @workflow.workflow_steps.each do |step| %>
           <div class="timeline-item">
             <!-- TODO wann finished? -->
-            <div class="timeline-marker"></div>
+            <div class="timeline-marker <%= workflow_step_state(step) %>"></div>
             <div class="timeline-content">
               <p class="heading"> <%= step.title %> </p>
               <p>
                 <%= step.description %>
               </p>
-              <% step.surveys.each do |attempt| %>
-                <p>
-                  <%= link_to attempt.survey.name,
-                              "/rapidfire/surveys/#{attempt.survey.id}/attempts/new?workflow_step_id=#{step.id}",
-                              class: "button" %>
-                </p>
-              <% end %>
+              <div class="buttons">
+                <% step.attempts.each_with_index do |attempt, index| %>
+                  <p>
+                    <%= link_to "#{index+1}. #{attempt.survey.name}",
+                                "/rapidfire/surveys/#{attempt.survey.id}/attempts/#{attempt.id}/edit?workflow_step_id=#{step.id}",
+                                class: "button #{attempt_state(attempt)}" %>
+                  </p>
+                <% end %>
+              </div>
             </div>
           </div>
 
-      <% end %>
+        <% end %>
+
+        <header class="timeline-header">
+          <span class="tag is-medium is-black">End</span>
+        </header>
       </div>
     </div>
   </div>
