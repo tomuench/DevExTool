@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_11_02_114354) do
+ActiveRecord::Schema[7.0].define(version: 2025_05_30_100550) do
   create_table "rapidfire_answers", force: :cascade do |t|
     t.integer "attempt_id"
     t.integer "question_id"
@@ -84,6 +84,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_02_114354) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "user_group"
   end
 
   add_foreign_key "rapidfire_attempts", "workflow_steps"

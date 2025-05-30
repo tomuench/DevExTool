@@ -4,7 +4,11 @@ class WorkflowsController < ApplicationController
   # Overview of own workflow-steps
   # GET /workflows/index
   def index
-    @workflow = Workflow.find_by(user: current_user)
+    @workflow = Workflow.find_by(user: current_user) if current_user
+
+    if @workflow.nil?
+      redirect_to "/"
+    end
   end
 
   # Creating a new survey workflow for a new user
@@ -22,7 +26,9 @@ class WorkflowsController < ApplicationController
     @user.save
 
     # Workflow erzeugen
-    @workflow = Workflow.new(user: @user)
+    # Assign a user_group randomnly to the users count
+    user_group = User.count.even? ? Workflow::USER_GROUP_A : Workflow::USER_GROUP_B
+    @workflow = Workflow.new(user: @user, user_group: user_group)
     @workflow.save
 
     # Workflow Steps erzeugen

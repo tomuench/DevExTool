@@ -1,4 +1,7 @@
 class Workflow < ApplicationRecord
+  USER_GROUP_A = 'A'.freeze # UserGroup A gets the first task Dexie and Second
+  USER_GROUP_B = 'B'.freeze # UserGroup A gets the first task Standards and Second Dexie
+
 
   belongs_to :user
 
@@ -24,9 +27,8 @@ class Workflow < ApplicationRecord
       description: 'In this section, you’ll tackle your first development task. You\'ll have the chance to work on it ' +
         'independently, applying your skills in a real-world setting. After you complete the task, we’ll gather your ' +
         'feedback and check in on your motivation and flow state. This step-by-step assessment allows us to understand ' +
-        'how this type of task impacts your engagement, motivation, and overall experience.' +
-        'Please click here to get your task instructions.',
-      # TODO wie messe ich hier start, end und code-metrics
+        'how this type of task impacts your engagement, motivation, and overall experience. ' +
+        link_first_task,
       survey_ids: survey_ids([:IMI, :SDFS, :DEXI]) # IMI SDFS DEXI
     )
     self.workflow_steps.create(
@@ -35,8 +37,8 @@ class Workflow < ApplicationRecord
       description: 'You’re now ready for the second task! Similar to the previous section, you’ll work independently on ' +
         'a different approach to the same problem. Once completed, we’ll again gather your feedback and assess how this ' +
         'experience compares with the first task. Through this, we aim to explore how different tools and approaches ' +
-        'influence your developer experience.' +
-        'Please click here to get your task instructions.',
+        'influence your developer experience. ' +
+        link_second_task,
       # TODO wie messe ich hier start, end und code-metrics
       survey_ids: survey_ids([:IMI, :SDFS, :DEXI])  # IMI SDFS DEXI
     )
@@ -52,6 +54,21 @@ class Workflow < ApplicationRecord
   end
 
   private
+  def link_first_task
+    user_group == USER_GROUP_A ? link_dexie : link_standards
+  end
+
+  def link_second_task
+    user_group == USER_GROUP_A ? link_standards : link_dexie
+  end
+
+  def link_dexie
+    '<a target="_blank" href="/DevExTaskA.pdf">Click here to get your task instructions</a>'
+  end
+
+  def link_standards
+    '<a target="_blank" href="/DevExTaskB.pdf">Click here to get your task instructions</a>'
+  end
 
   # Load survey ids for creating surveys
   # @param names [Array] names of the surveys

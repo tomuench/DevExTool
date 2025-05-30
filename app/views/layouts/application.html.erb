@@ -25,7 +25,7 @@
         <%= image_tag "logo.png", alt: "Logo" %>
       </a>
       <span class="navbar-burger burger" data-target="navbarMenu">
-                        <span></span>
+                <span></span>
                 <span></span>
                 <span></span>
                 </span>
@@ -35,9 +35,15 @@
         <a class="navbar-item" href="/home/index">
           Overview
         </a>
-        <a class="navbar-item">
-          Survey
-        </a>
+        <% if current_user %>
+          <a class="navbar-item" href="/workflows/index">
+            Survey
+          </a>
+        <% else %>
+          <a class="navbar-item" href="/users/sign_in">
+            Login
+          </a>
+        <% end %>
         <a class="navbar-item" href="/home/about.html">
           About me
         </a>
@@ -64,13 +70,22 @@
   </div>
 </section>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-
 
 <div class="container">
   <section class="articles">
-    <div class="column is-8 is-offset-2">
+    <div class="column is-10">
+
+      <% if notice || alert %>
+        <div class="card">
+          <div class="card-content">
+            <div class="content article-body">
+              <p class="notice"><%= notice %></p>
+              <p class="alert"><%= alert %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
       <%= yield %>
     </div>
   </section>
